@@ -4,3 +4,4 @@ target/
 .settings/
 index.jsp
 WEB-INF/
+hibernate.cfg.xml
