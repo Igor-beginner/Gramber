@@ -1,5 +1,7 @@
 package md.brainet.chat.entity;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -37,4 +39,10 @@ public class User {
 	
 	@Column(name = "bio")
 	private String bio;
+	
+	//TODO relation...
+	private List<User> friendsList;
+	
+	//TODO relation
+	private List<RequestOnFriend> requestOnFriendsList;
 }
