@@ -1,6 +1,7 @@
 package md.brainet.chat.entity;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -12,9 +13,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import lombok.Data;
 
-@Data
 @Entity
 @Table(name = "message")
 public class Message {
@@ -25,7 +24,7 @@ public class Message {
 	
 	@OneToMany
 	@JoinColumn(name = "resource_id")
-	private Resource resource;
+	private List<Resource> resources;
 	
 	@Column(name = "text")
 	private String text;
@@ -34,6 +33,46 @@ public class Message {
 	private LocalDate sentDate;
 	
 	@ManyToOne
-	@JoinColumn(name =  "owner_id")
+	@JoinColumn(name = "owner_id")
 	private User owner;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public List<Resource> getResources() {
+		return resources;
+	}
+
+	public void setResources(List<Resource> resources) {
+		this.resources = resources;
+	}
+
+	public String getText() {
+		return text;
+	}
+
+	public void setText(String text) {
+		this.text = text;
+	}
+
+	public LocalDate getSentDate() {
+		return sentDate;
+	}
+
+	public void setSentDate(LocalDate sentDate) {
+		this.sentDate = sentDate;
+	}
+
+	public User getOwner() {
+		return owner;
+	}
+
+	public void setOwner(User owner) {
+		this.owner = owner;
+	}
 }
