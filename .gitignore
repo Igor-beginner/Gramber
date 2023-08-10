@@ -5,3 +5,5 @@ target/
 index.jsp
 WEB-INF/
 hibernate.cfg.xml
+.idea/
+*.iml
