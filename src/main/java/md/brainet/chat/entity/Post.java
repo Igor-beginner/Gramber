@@ -33,9 +33,9 @@ public class Post {
 	@Column(name = "description")
 	private String description;
 	
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "resource_id")
-	private Resource resource;
+	private List<Resource> resource;
 	
 	@ManyToOne
 	@JoinColumn(name = "owner_id")
@@ -44,24 +44,7 @@ public class Post {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "message_id")
 	private Message message;
-	
-	@ManyToMany
-	@JoinTable(name = "activity",
-			joinColumns = @JoinColumn(name = "post_id"),
-			inverseJoinColumns = @JoinColumn(name = "user_id"))
-	@Where(clause = "activity_type = 'LIKE'")
-	private Set<User> userLikes;
-	
-	@ManyToMany
-	@JoinTable(name = "activity",
-			joinColumns = @JoinColumn(name = "post_id"),
-			inverseJoinColumns = @JoinColumn(name = "user_id"))
-	@Where(clause = "activity_type = 'SHARE'")
-	private Set<User> userShared;
-	
-	@OneToMany
-	@JoinColumn(name = "post_id")
-	private List<Message> commentsList;
+
 
 	public int getId() {
 		return id;
@@ -87,14 +70,6 @@ public class Post {
 		this.description = description;
 	}
 
-	public Resource getResource() {
-		return resource;
-	}
-
-	public void setResource(Resource resource) {
-		this.resource = resource;
-	}
-
 	public User getOwner() {
 		return owner;
 	}
@@ -109,29 +84,5 @@ public class Post {
 
 	public void setMessage(Message message) {
 		this.message = message;
-	}
-
-	public Set<User> getUserLikes() {
-		return userLikes;
-	}
-
-	public void setUserLikes(Set<User> userLikes) {
-		this.userLikes = userLikes;
-	}
-
-	public Set<User> getUserShared() {
-		return userShared;
-	}
-
-	public void setUserShared(Set<User> userShared) {
-		this.userShared = userShared;
-	}
-
-	public List<Message> getCommentsList() {
-		return commentsList;
-	}
-
-	public void setCommentsList(List<Message> commentsList) {
-		this.commentsList = commentsList;
 	}
 }

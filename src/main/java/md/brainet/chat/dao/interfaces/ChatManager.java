@@ -1,6 +1,6 @@
-package md.brainet.chat.dao;
+package md.brainet.chat.dao.interfaces;
 
-import md.brainet.chat.rest.Chat;
+import md.brainet.chat.entity.*;
 
 public interface ChatManager {
 	void addNewChat(Chat newChat);

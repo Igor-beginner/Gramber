@@ -22,7 +22,7 @@ public class Message {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "resource_id")
 	private List<Resource> resources;
 	

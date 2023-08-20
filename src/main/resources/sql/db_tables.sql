@@ -13,7 +13,8 @@ DROP TABLE IF EXISTS comments CASCADE;
 CREATE TABLE users ( 
   id SERIAL, 
   name VARCHAR(30), 
-  surname VARCHAR(30), 
+  surname VARCHAR(30),
+  nick VARCHAR(20) UNIQUE,
   age INTEGER, 
   phone_number VARCHAR(50), 
   password VARCHAR(100), 

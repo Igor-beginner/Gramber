@@ -13,7 +13,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "request_on_friend")
-@Where(clause = "is_accept = false")
+//@Where(clause = "is_accept = false")
 public class RequestOnFriend {
 	
 	@Id

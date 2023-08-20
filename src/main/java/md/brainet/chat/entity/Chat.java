@@ -2,6 +2,9 @@ package md.brainet.chat.entity;
 
 import java.util.List;
 
+import javax.validation.constraints.NotEmpty;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -29,15 +32,15 @@ public class Chat {
 	@Column(name = "photo_link")
 	private String photoLink;
 	
-	@OneToMany
+	@OneToMany(cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "chat_id")
 	private List<Message> messages;
 	
-	@ManyToMany
-	@JoinTable(name = "chat_members",
-			joinColumns = @JoinColumn(name = "chat_id"),
-			inverseJoinColumns = @JoinColumn(name = "user_id"))
-	private List<ChatMember> chatMembers;
+//	@ManyToMany(cascade = CascadeType.ALL)
+//	@JoinTable(name = "chat_members",
+//			joinColumns = @JoinColumn(name = "chat_id"),
+//			inverseJoinColumns = @JoinColumn(name = "user_id"))
+//	private List<ChatMember> chatMembers;
 
 	public int getId() {
 		return id;
@@ -69,13 +72,5 @@ public class Chat {
 
 	public void setMessages(List<Message> messages) {
 		this.messages = messages;
-	}
-
-	public List<ChatMember> getChatMembers() {
-		return chatMembers;
-	}
-
-	public void setChatMembers(List<ChatMember> chatMembers) {
-		this.chatMembers = chatMembers;
 	}
 }

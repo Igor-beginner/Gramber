@@ -10,7 +10,6 @@
   <properties>
 	  <spring.version>5.3.0</spring.version>
   </properties>
-  s
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -44,9 +43,25 @@
 	    <version>${spring.version}</version>
 	</dependency>
 	<dependency>
+	    <groupId>org.springframework.security</groupId>
+	    <artifactId>spring-security-web</artifactId>
+	    <version>5.4.3</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.springframework.security</groupId>
+	    <artifactId>spring-security-config</artifactId>
+	    <version>5.4.3</version>
+	</dependency>
+
+	<dependency>
 	    <groupId>org.springframework.data</groupId>
 	    <artifactId>spring-data-jpa</artifactId>
 	    <version>3.0.0</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-test</artifactId>
+	    <version>${spring.version}</version>
 	</dependency>
 	<dependency>
    	 	<groupId>com.fasterxml.jackson.core</groupId>
@@ -79,7 +94,16 @@
 	    <artifactId>javax.annotation-api</artifactId>
 	    <version>1.3.2</version>
 	</dependency>
-
+	<dependency>
+	    <groupId>org.hibernate.validator</groupId>
+	    <artifactId>hibernate-validator</artifactId>
+	    <version>6.2.0.Final</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.aspectj</groupId>
+	    <artifactId>aspectjweaver</artifactId>
+	    <version>1.9.6</version>
+	</dependency>
   </dependencies>
   <build>
     <finalName>Gramber</finalName>

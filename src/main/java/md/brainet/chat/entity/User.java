@@ -29,6 +29,17 @@ public class User {
 	@Column(name = "surname")
 	private String surname;
 	
+	@Column(name = "nick")
+	private String nick;
+	
+	public String getNick() {
+		return nick;
+	}
+
+	public void setNick(String nick) {
+		this.nick = nick;
+	}
+
 	@Column(name = "age")
 	private int age;
 	
@@ -44,18 +55,7 @@ public class User {
 	@Column(name = "bio")
 	private String bio;
 	
-	@ManyToMany
-	@JoinTable(name = "request_on_friend",
-			joinColumns = @JoinColumn(name = "from_id"),
-			inverseJoinColumns = @JoinColumn(name = "to_id"))
-	@Where(clause = "is_accept = true")
-	private List<User> friendsList;
 	
-	@OneToMany(mappedBy = "sender")
-	private List<RequestOnFriend> incomingFriendRequests;
-	
-	@OneToMany(mappedBy = "receiver")
-	private List<RequestOnFriend> outcomingFriendRequests;
 
 	public int getId() {
 		return id;
@@ -119,29 +119,5 @@ public class User {
 
 	public void setBio(String bio) {
 		this.bio = bio;
-	}
-
-	public List<User> getFriendsList() {
-		return friendsList;
-	}
-
-	public void setFriendsList(List<User> friendsList) {
-		this.friendsList = friendsList;
-	}
-
-	public List<RequestOnFriend> getIncomingFriendRequests() {
-		return incomingFriendRequests;
-	}
-
-	public void setIncomingFriendRequests(List<RequestOnFriend> incomingFriendRequests) {
-		this.incomingFriendRequests = incomingFriendRequests;
-	}
-
-	public List<RequestOnFriend> getOutcomingFriendRequests() {
-		return outcomingFriendRequests;
-	}
-
-	public void setOutcomingFriendRequests(List<RequestOnFriend> outcomingFriendRequests) {
-		this.outcomingFriendRequests = outcomingFriendRequests;
 	}
 }

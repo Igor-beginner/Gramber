@@ -1,4 +1,4 @@
-package md.brainet.chat.dao;
+package md.brainet.chat.dao.implementations;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -9,48 +9,33 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.RequestScope;
 
-import md.brainet.chat.rest.Chat;
+import md.brainet.chat.dao.GeneralLifecycleDaoObject;
+import md.brainet.chat.dao.interfaces.ChatManager;
+import md.brainet.chat.entity.*;
 
 @Component
 @RequestScope
-public class HibernateChatManagerImpl implements ChatManager{
-	
-	@Autowired
-	private SessionFactory sessionFactory;
-	
-	private Session session;
-	
-	@PostConstruct
-	public void inti() {
-		session = sessionFactory.openSession();
-		session.beginTransaction();
-	}
-	
-	@PreDestroy
-	public void destroy() {
-		session.getTransaction().commit();
-		session.close();
-	}
+public class HibernateChatManagerImpl extends GeneralLifecycleDaoObject implements ChatManager{
 	
 	@Override
 	public void addNewChat(Chat newChat) {
-		session.save(newChat);
+		getSession().persist(newChat);
 	}
 
 	@Override
 	public void deleteChatById(int chatId) {
-		session.createQuery("delete Chat where id = :chatId")
+		getSession().createQuery("delete Chat where id = :chatId")
 		.setParameter("chatId", chatId)
 		.executeUpdate();
 	}
 
 	@Override
 	public void editChat(Chat editedChat) {
-		session.update(editedChat);
+		getSession().merge(editedChat);
 	}
 
 	@Override
 	public Chat getChatById(int chatId) {
-		return session.get(Chat.class, chatId);
+		return getSession().get(Chat.class, chatId);
 	}
 }
